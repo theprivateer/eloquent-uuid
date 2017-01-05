@@ -21,6 +21,5 @@
     "psr-4": {
       "Privateer\\Uuid\\": "src/"
     }
-  },
-  "minimum-stability": "dev"
+  }
 }
