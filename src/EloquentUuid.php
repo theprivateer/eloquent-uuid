@@ -23,7 +23,7 @@ trait EloquentUuid
 
             $columnName = static::getUuidColumn();
 
-            $model->$columnName = Uuid::generate(4);
+            $model->$columnName = ( $model->getAttribute($columnName)) ? $model->getAttribute($columnName) : Uuid::generate(4);
         });
     }
 
@@ -34,7 +34,7 @@ trait EloquentUuid
     {
         $columnName = static::getUuidColumn();
 
-        return (string) $this->attributes[$columnName];
+        return ( ! empty($this->attributes[$columnName])) ? (string) $this->attributes[$columnName] : false;
     }
 
     protected static function getUuidColumn()
