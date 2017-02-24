@@ -27,6 +27,16 @@ trait EloquentUuid
         });
     }
 
+
+    /**
+     * @param $uuid
+     * @return mixed
+     */
+    public static function findByUuid($uuid)
+    {
+        return static::where(static::getUuidColumn(), $uuid)->firstOrFail();
+    }
+
     /**
      * @return mixed
      */
@@ -37,6 +47,9 @@ trait EloquentUuid
         return ( ! empty($this->attributes[$columnName])) ? (string) $this->attributes[$columnName] : false;
     }
 
+    /**
+     * @return string
+     */
     protected static function getUuidColumn()
     {
         if(isset(static::$uuidColumn))
